@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Your Blogs</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+
+    <div class="container mt-4">
+        <h1>Your Blogs</h1>
+        <% if (error) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } else if (blogs.length === 0) { %>
+            <p class="text-muted">You haven't created any blogs yet.</p>
+        <% } else { %>
+            <div class="list-group">
+                <% blogs.forEach(blog => { %>
+                    <a href="/blog/<%= blog._id %>" class="list-group-item list-group-item-action">
+                        <h5 class="mb-1"><%= blog.title %></h5>
+                        <small class="text-muted">
+                            Created by <%= blog.author ? blog.author.Name : "Unknown Author" %>
+                            on <%= blog.createdAt ? blog.createdAt.toLocaleDateString() : "Unknown Date" %>
+                        </small>
+                        <p class="mb-1"><%= blog.content.slice(0, 100) %>...</p>
+                    </a>
+                <% }) %>                
+            </div>
+        <% } %>
+    </div>
+
+    <%- include('./partials/script') %>
+</body>
+</html>

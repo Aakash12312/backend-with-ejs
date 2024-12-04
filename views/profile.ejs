@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>User Profile</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <div class="container mt-3">
+        <h1 class="mb-4">Your Profile</h1>
+        
+        <% if (error) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+
+        <form action="/user/profile/edit" method="post">
+            <div class="mb-3">
+                <label for="Name" class="form-label">Name</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="Name" 
+                    name="Name" 
+                    value="<%= user.Name %>" 
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label for="Email" class="form-label">Email</label>
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    id="Email" 
+                    name="Email" 
+                    value="<%= user.Email %>" 
+                    readonly>
+            </div>
+
+            <div class="mb-3">
+                <label for="Password" class="form-label">Change Password</label>
+                <input 
+                    type="password" 
+                    class="form-control" 
+                    id="Password" 
+                    name="Password" 
+                    placeholder="Enter new password (optional)">
+            </div>
+
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit">Save Changes</button>
+            </div>
+        </form>
+    </div>
+    <%- include('./partials/script') %>
+</body>
+</html>

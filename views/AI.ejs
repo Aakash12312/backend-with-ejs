@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>AI blog Generation</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+
+    <div class="container mt-3">
+        <h1 class="mb-4">Add a New Blog</h1>
+        
+        <% if (error) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+
+        <form action="/blog/AI" method="post">
+            <!-- Blog Title -->
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="title" 
+                    name="title" 
+                    placeholder="Enter title" 
+                    required>
+            </div>
+        
+            <!-- Temperature Input -->
+            <div class="mb-3">
+                <label for="temperature" class="form-label">Creativity Level (Temperature)</label>
+                <input 
+                    type="number" 
+                    class="form-control" 
+                    id="temperature" 
+                    name="temperature" 
+                    min="0" 
+                    max="1" 
+                    step="0.1" 
+                    value="0.7" 
+                    required>
+            </div>
+        
+            <!-- Language Dropdown -->
+            <div class="mb-3">
+                <label for="language" class="form-label">Language</label>
+                <select class="form-select" id="language" name="language" required>
+                    <option value="English">English</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Telugu">Telugu</option>
+                    <option value="Marathi">Marathi</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="French">French</option>
+                    <option value="German">German</option>
+                </select>
+            </div>
+        
+            <!-- Submit Button -->
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+        
+    </div>
+
+    <%- include('./partials/script') %>
+</body>
+</html>
